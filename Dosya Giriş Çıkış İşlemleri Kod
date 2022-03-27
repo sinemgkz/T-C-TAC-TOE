@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void DosyaYaz(FILE *pDosya){
+
+        char ad[30],soyad[30],ad2[30],soyad2[30],kazanan_ad[30],kazanan_soyad[30],kaybeden_ad[30],kaybeden_soyad[30] ;
+        int yenilgi,yenilgi2,galibiyet,galibiyet2,beraberlik;
+        pDosya=fopen("dosya.txt","w");
+
+        printf("Ilk oyuncu ad ve soyad giriniz: ");
+        scanf("%s %s",ad,soyad);
+        printf("Ilk oyuncunun yenilgi ve galibiyet sayisini giriniz: ");
+        scanf("%d %d",&yenilgi,&galibiyet);
+        printf("Ikinci oyuncu ad ve soyad giriniz: ");
+        scanf("%s %s",ad2,soyad2);
+        printf("Ikinci oyuncunun yenilgi ve galibiyet sayisini giriniz: ");
+        scanf("%d %d",&yenilgi2,&galibiyet2);
+        fprintf(pDosya,"%s %s %d %d\n%s %s %d %d \n",ad,soyad,yenilgi,galibiyet,ad2,soyad2,yenilgi2,galibiyet2);
+        printf("Beraberlik sayilarini giriniz: ");
+        scanf("%d",&beraberlik);
+        fprintf(pDosya,"%d\n",beraberlik);
+
+        printf("Kazanan oyuncuyu giriniz: ");
+        scanf("%s %s",kazanan_ad,kazanan_soyad);
+        fprintf(pDosya,"%s %s\n",kazanan_ad,kazanan_soyad);
+        printf("Kaybeden oyuncuyu giriniz: ");
+        scanf("%s %s",kaybeden_ad,kaybeden_soyad);
+        fprintf(pDosya,"%s %s\n",kaybeden_ad,kaybeden_soyad);
+        fclose(pDosya);
+}
+
+void DosyaOku(FILE *pDosya){
+
+        char ad[30],soyad[30],ad2[30],soyad2[30],kazanan_ad[30],kazanan_soyad[30],kaybeden_ad[30],kaybeden_soyad[30] ;
+        int yenilgi,yenilgi2,galibiyet,galibiyet2,beraberlik,i;
+        pDosya=fopen("dosya.txt","r");
+
+
+        fscanf(pDosya,"%s %s %d %d\n%s %s %d %d \n",ad,soyad,&yenilgi,&galibiyet,ad2,soyad2,&yenilgi2,&galibiyet2);
+        printf("Ilk oyuncu ad ve soyadi: %s %s\n",ad,soyad);
+        printf("Ilk oyuncu yenilgi ve galibiyet sayisi: %d %d\n",yenilgi,galibiyet);
+        printf("Ikinci oyuncu ad ve soyadi: %s %s\n",ad2,soyad2);
+        printf("Ikinci oyuncu yenilgi ve galibiyet sayisi: %d %d\n",yenilgi2,galibiyet2);
+        fscanf(pDosya,"%d\n",&beraberlik);
+        printf("Oyuncularin beraberlik sayisi: %d\n",beraberlik);
+
+
+        fscanf(pDosya,"%s %s\n",kazanan_ad,kazanan_soyad);
+        printf("Kazanan oyuncu: %s %s\n",kazanan_ad,kazanan_soyad);
+        fscanf(pDosya,"%s %s\n",kaybeden_ad,kaybeden_soyad);
+        printf("Kaybeden oyuncu: %s %s\n",kaybeden_ad,kaybeden_soyad);
+
+
+        fclose(pDosya);
+
+
+}
+
+int main()
+{
+   FILE *pDosya;
+
+    if ( (pDosya = fopen("dosya.txt","w+"))==NULL){
+        printf("Dosya acilmadi!");
+        exit(1);
+    }
+    DosyaYaz(pDosya);
+    DosyaOku(pDosya);
+    return 0;
+}
