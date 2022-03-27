@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct oyuncu1
+{
+    char ad[30];
+    char soyad[30];
+    int yenilgi_sayisi;
+    int galibiyet_sayisi;
+};
+struct oyuncu1 ilk_oyuncu;
+
+struct oyuncu2
+{
+    char ad2[30];
+    char soyad2[30];
+    int yenilgi_sayisi2;
+    int galibiyet_sayisi2;
+};
+struct oyuncu2 ikinci_oyuncu;
+
+struct oyun
+{
+    int toplam_oyun;
+    int hamle_sayisi;
+    int beraberlik;
+    int skor1,skor2;
+    char kazanan_ad[30],kazanan_soyad[30];
+    char kaybeden_ad[30],kaybeden_soyad[30];
+
+};
+struct oyun bilgi;
+
+enum harfler{
+
+    X=1,
+    O=2,
+
+};
+
+enum karar{
+
+    evet=1,
+    hayir=2,
+
+};
+
+int main ()
+{
+
+    enum harfler harf1;
+    enum harfler harf2;
+    enum karar evt_hyr;
+
+    printf("\nIlk oyuncu ad ve soyadi: ");
+    scanf("%s %s",ilk_oyuncu.ad,ilk_oyuncu.soyad);
+    printf("\nOyun harfi icin sayi(1-2) giriniz: ");
+    scanf("%d",&harf1);
+
+    if (harf1 == 1 || harf1 == 2)
+
+
+     {
+        printf("\nIlk oyuncu yenilgi sayisini giriniz: " );
+        scanf("%d",&ilk_oyuncu.yenilgi_sayisi);
+        printf("\nIlk oyuncu galibiyet sayisini giriniz: ");
+        scanf("%d",&ilk_oyuncu.galibiyet_sayisi);
+
+        printf("\n-   -   -   -   -   -   -   -   -   -   -   -   -   -\n");
+        printf("\nIkinci oyuncu ad ve soyadini giriniz: ");
+        scanf("%s %s",ikinci_oyuncu.ad2,ikinci_oyuncu.soyad2);
+        printf("\nOyun harfi icin sayi(1-2) giriniz: ");
+        scanf("%d",&harf2);
+
+
+        if(harf1!=harf2)
+
+
+        {
+            printf("\nIkinci oyuncu yenilgi sayisini giriniz: ");
+            scanf("%d",&ikinci_oyuncu.yenilgi_sayisi2);
+            printf("\nIkinci oyuncu galibiyet sayisini giriniz: ");
+            scanf("%d",&ikinci_oyuncu.galibiyet_sayisi2);
+
+            printf("\n-   -   -   -   -   -   -   -   -   -   -   -   -   -\n");
+            printf("\nToplam oyun sayisini giriniz: ");
+            scanf("%d",&bilgi.toplam_oyun);
+            printf("\nToplam hamle sayisini giriniz: ");
+            scanf("%d",&bilgi.hamle_sayisi);
+            printf("\nToplam beraberlik sayisini giriniz: ");
+            scanf("%d",&bilgi.beraberlik);
+            printf("\nSkoru giriniz(oyuncu1 - oyuncu2 ): ");
+            scanf("%d %d",&bilgi.skor1,&bilgi.skor2);
+            printf("Skor sayilari esit mi?(evet:1,hayir:2): ");
+            scanf("%d",&evt_hyr);
+
+            if(evt_hyr==2)
+            {
+                printf("\nKazanan oyuncu: ");
+                scanf("%s %s",bilgi.kazanan_ad,bilgi.kazanan_soyad);
+                printf("\nKaybeden oyuncu: ");
+                scanf("%s %s",bilgi.kaybeden_ad,bilgi.kaybeden_soyad);
+
+            }
+            else if(evt_hyr==1)
+
+                printf("Oyun berabere kalmistir.");
+
+            else
+                printf("Hatali rakam girdiniz!");
+
+        }
+         else
+
+            printf("Ilk oyuncu ile ayni harfi girdiniz!");
+
+    }
+
+
+    else
+
+    printf("Hatali rakam girdiniz!");
+
+    return 0;
+}
